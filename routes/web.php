@@ -39,6 +39,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
 //logout
     Route::get('/admin/logout' , [AdminController::class, 'AdminLogout'])->name('admin.logout');
 
+    Route::get('/admin/profile' , [AdminController::class, 'AdminProfile'])->name('admin.profile');
+
 });     //role as an admin wel auth
 
 Route::middleware(['auth','role:agent'])->group(function(){
@@ -47,4 +49,4 @@ Route::get('/agent/dashboard',[AgentController::class, 'AgentDashboard'])->name(
 } );
 
 Route::get('/admin/login' , [AdminController::class, 'AdminLogin'])->name('admin.login');
-Route::get('/admin/profile' , [AdminController::class, 'AdminProfile'])->name('admin.profile');
+
