@@ -54,9 +54,10 @@
                     <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
 
                     <form form method="POST" action="{{ route('login') }}">
+                      @csrf
                       <div class="mb-3">
                         <label for="login" class="form-label">Email/Name/Phone</label>
-                        <input type="text" class="form-control" id="login" placeholder="login">
+                        <input type="text" name="login" class="form-control" id="login" placeholder="login">
                       </div>
                       <div class="mb-3">
                         <label for="userPassword" 
