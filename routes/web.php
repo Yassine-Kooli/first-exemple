@@ -47,3 +47,4 @@ Route::get('/agent/dashboard',[AgentController::class, 'AgentDashboard'])->name(
 } );
 
 Route::get('/admin/login' , [AdminController::class, 'AdminLogin'])->name('admin.login');
+Route::get('/admin/profile' , [AdminController::class, 'AdminProfile'])->name('admin.profile');
