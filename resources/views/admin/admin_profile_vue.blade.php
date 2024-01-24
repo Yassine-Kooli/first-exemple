@@ -9,7 +9,8 @@
         <div class="card rounded">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-2">
-                <img class="wd-70 rounded-circle" src="{{ (!empty($profileData->photo)) ? url('uploads/admin_images/'.$profileData->photo) : url('uploads/user_image.jpg') }}" alt="profile">
+                <img class="wd-70 rounded-circle" src="{{ (!empty($profileData->photo)) ? asset('uploads/admin_images/'.$profileData->photo) : asset('uploads/user_image.jpg') }}" alt="profile">
+
                  <div class="card-body">
                  <h3>{{$profileData->name}}</h3>
                  </div>
@@ -51,26 +52,33 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-body">
-               <h6 class="card-title">Basic Form</h6>
-                    <form class="forms-sample">
-                        <div class="mb-3">
-                            <label for="exampleInputUsername1" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="Username">
+
+               <h3>Edit Admin Profile</h3>
+              <br>
+
+                    <form method="post" action="{{ route('admin.profile.store') }}" class="card-title" enctype="multipart/form-data">
+                         @csrf
+                      <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputUsername1" autocomplete="off" value="{{$profileData->name}}">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            <input type="email" name="email" class="form-control" id="email" autocomplete="off" value="{{$profileData->email}}">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" autocomplete="off" placeholder="Password">
+                            <label for="exampleInputPassword1" class="form-label">Photo</label>
+                            <input class="form-control" name="photo" type="file" id="image">
                         </div>
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                          </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Phone</label>
+                          <input type="text" name="phone" class="form-control" id="exampleInputPhone1" autocomplete="off" value="{{$profileData->phone}}">
+                      </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Address</label>
+                            <input type="text" name="adress" class="form-control" id="exampleInputAdress1" autocomplete="off" value="{{$profileData->adress}}">
+                        </div>
                           <button type="submit" class="btn btn-primary me-2">Submit</button>
-                          <button class="btn btn-secondary">Cancel</button>
                       </form>
                 </div>
           </div>
