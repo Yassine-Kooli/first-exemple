@@ -10,7 +10,7 @@
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 <div class="card-body">
-                    <h3>{{$profileData->name}}</h3>
+                    <h3>hello {{$profileData->name}} !</h3>
                 </div>
             </div>
           </div>
@@ -23,21 +23,48 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-body">
-
-               <h3>Edit Admin Profile</h3>
-              <br>
-
-                    <form method="post" action="{{ route('admin.profile.store') }}" class="card-title" enctype="multipart/form-data">
-                         @csrf
-                      <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" class="form-control" id="exampleInputUsername1" autocomplete="off" value="{{$profileData->name}}">
-                        </div>
-                     
-                          <button type="submit" class="btn btn-primary me-2">Submit</button>
-                      </form>
+                <h3>Admin Change Password</h3>
+                <br>
+                <form method="post" action="{{ route('admin.update.password') }}" class="card-title">
+                 
+                  @csrf
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Current Password</label>
+                    <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror" id="current_password">
+                    @error('current__password')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">new Password</label>
+                    <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" id="new_password">
+                    @error('new_password')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">confirm Password</label>
+                    <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-primary me-2">Submit</button>
+                </form>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
                 </div>
-          </div>
+                @endif
+                @if (session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
+                </div>
+                @endif
+            
+              </div>
+            </div>
         </div>
       </div>
     </div>
